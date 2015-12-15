@@ -1,3 +1,8 @@
+/*
+ * DisplayPlayerController class to handle events and SQL queries related to 
+ * displaying games played by player
+ */
+
 package controllers;
 
 import java.io.IOException;
@@ -11,7 +16,6 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.adapter.JavaBeanBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,9 +30,16 @@ import javafx.scene.layout.GridPane;
 
 public class DisplayPlayerGameController extends ScreenController implements Initializable{
 
+	//GridPane
 	@FXML private GridPane playerGameGridPane;
+	
+	//ComboBox
     @FXML private ComboBox<String> selectPlayerComboBox;
+    
+    //Buttons
     @FXML private Button backButton;
+    
+    //Labels
     @FXML private Label playerNameLabel;
     
     private GridPane dynamicGridPane;
@@ -38,26 +49,35 @@ public class DisplayPlayerGameController extends ScreenController implements Ini
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		//Populate all playerIDs into a list
 		populatePlayerIDs();
+		
+		//Add items to comboBox
 		selectPlayerComboBox.setItems(PlayerIDs);
 		
 	}
 	
+	//Action Handler for backButton
 	@FXML
-    void backButtonHandler(ActionEvent event) throws IOException {
+    void backButtonHandler(ActionEvent event) throws IOException {		
+		//Set scene to GameApplication.fxml
 		Parent parent;
     	parent = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 		super.setScreen(event, parent, "Game Application");
     }
 	
+	//Action Handler for selectPlayer combobox
 	@FXML
     void selectPlayerComboBoxHandler(ActionEvent event) throws SQLException {
 		
+		//Remove dynamic grid pane from the main grid pane
 		playerGameGridPane.getChildren().remove(dynamicGridPane);
 		
+		//Create a new grid pane as a node
 		dynamicGridPane=new GridPane();
 		dynamicGridPane.setVgap(10);
 		
+		//Selected player ID
 		int id=Integer.parseInt(selectPlayerComboBox.getSelectionModel().getSelectedItem());
 		displayPlayerGame(id);
 
@@ -119,6 +139,7 @@ public class DisplayPlayerGameController extends ScreenController implements Ini
 				Label label=new Label(gameTitle + " on " + formattedDate + " with score of " + score);
 				label.setPrefWidth(400);
 				
+				//Add labels to dynamic grid pane
 			    dynamicGridPane.add(label,0,count);
 				count++;
 			}

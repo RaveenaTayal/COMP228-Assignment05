@@ -1,3 +1,7 @@
+/*
+ * AddPlayerController class to handle events and SQL queries related to adding a new player
+ */
+
 package controllers;
 
 import java.io.IOException;
@@ -18,25 +22,35 @@ import javafx.scene.control.TextField;
 
 public class AddPlayerController extends ScreenController{
 
-	@FXML private Button cancelButton;
+	//TextFields
 	@FXML private TextField addressTextBox;
 	@FXML private TextField postalCodeTextBox;
 	@FXML private TextField phoneNumberTextBox;
-	@FXML private Button addButton;
 	@FXML private TextField lastNameTextBox;
     @FXML private TextField provinceTextBox;
     @FXML private TextField firstNameTextBox;
+    
+	//Buttons
+	@FXML private Button addButton;
+	@FXML private Button cancelButton;
+	
+	//Labels
     @FXML private Label statusLabel;
+    
+    //List to hold text value of textfields
     ArrayList<String> textFieldList;
+    
     boolean hasNullField=false;
     boolean isIncorrectFormat=false;
     
+    //Action Handler for cancelButton
 	@FXML
     void cancelButtonHandler(ActionEvent event) throws IOException {
+		//Set scene to GameApplication.fxml
     	Parent parent=FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
     	super.setScreen(event, parent, "Game Application");
     }
-    
+	//Action Handler for addButton
 	@FXML
     void addButtonHandler(ActionEvent event) {
 
@@ -72,6 +86,9 @@ public class AddPlayerController extends ScreenController{
 	}
 	public void addPlayer()
 	{
+		/*
+		 * Check if there are empty values, incorrect postal code or phone number format
+		 */
 		
 		if (hasNullField) {			
 			

@@ -1,13 +1,14 @@
+/*
+ * AddGameController class to handle events and SQL queries related to adding a new game
+ */
+
 package controllers;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 import beans.Game;
 import javafx.event.ActionEvent;
@@ -19,16 +20,22 @@ import javafx.scene.control.TextField;
 
 public class AddGameController extends ScreenController{
 	
+	//TextFields
 	@FXML private TextField gameTitleTextBox;
-	@FXML private Label statusLabel;
+	
+	//Labels
+	@FXML private Label statusLabel; //Label to display status of adding a game to database
 
+	//Action Handler for cancelButton
     @FXML
     void cancelButtonHandler(ActionEvent event) throws IOException {
 
+    	//Set scene to GameApplication.fxml
     	Parent parent=FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
     	super.setScreen(event, parent, "Game Application");
     }
     
+    //Action Handler for addButton
     @FXML
     void addButtonHandler(ActionEvent event) {
     	addGame();
@@ -38,13 +45,16 @@ public class AddGameController extends ScreenController{
 	{
 		String game_title=gameTitleTextBox.getText();
 		
+		//Check if title is null
 		if (game_title.equals("")) {			
 			
 			statusLabel.setText("Enter game title to add !!");
 		}
 		else
 		{
-			Game insertGame=new Game();	
+			Game insertGame=new Game();
+			
+			//SQL Query to add new game 
 			String SQLQuery = "INSERT into game (game_title) VALUES (?)";
 			try(
 				Connection connection = DbConfig.getConnection();

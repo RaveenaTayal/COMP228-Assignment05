@@ -5,6 +5,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
+/*
+ *  Main class to begin the Game Application
+ *  Author : Raveena Tayal
+ *  Date: December 10, 2015
+ */
+
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {

@@ -1,3 +1,7 @@
+/*
+ * UpdatePlayerController class to handle events and SQL queries related to updating a player
+ */
+
 package controllers;
 
 import java.io.IOException;
@@ -25,29 +29,43 @@ import javafx.scene.control.TextField;
 
 public class UpdatePlayerController extends ScreenController implements Initializable{
 
-	@FXML private Button cancelButton;
+	//TextFields
 	@FXML private TextField addressTextBox;
 	@FXML private TextField postalCodeTextBox;
     @FXML private TextField phoneNumberTextBox;
-    @FXML private ComboBox<String> selectPlayerComboBox;
-    @FXML private TextField provinceTextBox;    
-    @FXML private Button updateButton;  
+    @FXML private TextField provinceTextBox;
     @FXML private TextField lastNameTextBox; 
     @FXML private TextField firstNameTextBox;
+    
+    //Buttons
+    @FXML private Button cancelButton;
+    @FXML private Button updateButton;  
+    
+    //ComboBox
+    @FXML private ComboBox<String> selectPlayerComboBox;
+    
+    //Labels
     @FXML private Label statusLabel;
+    
+    //List to hold text values of textfields
     ArrayList<String> textFieldList;
+    
+    //List to hold player IDs
     ObservableList<String> PlayerIDs;
     boolean hasNullField=false;
     boolean isIncorrectFormat=false;
     boolean isPlayerSelected=true;
     
+    //Action Handler for cancelButton
     @FXML
     void cancelButtonHandler(ActionEvent event) throws IOException {
+    	//Set scene to GameApplication.fxml
     	Parent parent;
     	parent = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
 		super.setScreen(event, parent, "Game Application");    	
     }
    
+  //Action Handler for updateButton
     @FXML
     void updateButtonHandler(ActionEvent event) {
     	
@@ -59,6 +77,8 @@ public class UpdatePlayerController extends ScreenController implements Initiali
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		populatePlayerIDs();
+		
+		//Add items to combo box
 		selectPlayerComboBox.setItems(PlayerIDs);
 	}
     
@@ -66,6 +86,7 @@ public class UpdatePlayerController extends ScreenController implements Initiali
     {
     	PlayerIDs=FXCollections.observableArrayList();
     	
+    	//SQL query to select all player IDs from player table
     	String SQLQuery = "SELECT player_id FROM player";
 		
 		try(
@@ -119,6 +140,10 @@ public class UpdatePlayerController extends ScreenController implements Initiali
     
     public void updatePlayer()
 	{
+    	/*
+		 * Check if there are empty values, incorrect postal code or phone number format
+		 */
+    	
 		if(isPlayerSelected==false) {
 			statusLabel.setText("Please Select a playeR ID");
 			isPlayerSelected=true;

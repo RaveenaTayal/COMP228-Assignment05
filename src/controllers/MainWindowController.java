@@ -1,3 +1,6 @@
+/*
+ * MainWindowController class to handle events for displaying various options
+ */
 
 package controllers;
 
@@ -23,6 +26,8 @@ public class MainWindowController extends ScreenController implements Initializa
     	Parent parent;
     	int selectedIndex=actionComboBox.getSelectionModel().getSelectedIndex();
     	String title=actionComboBox.getSelectionModel().getSelectedItem();
+    	
+    	//Switch to a different scene based on choice selected by user
     	switch(selectedIndex)
     	{
     	case 0:
@@ -40,13 +45,17 @@ public class MainWindowController extends ScreenController implements Initializa
     	default:
     		parent=FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
     		break;
-    	}   	
+    	}  
+    	
+    	//Set scene
     	super.setScreen(event,parent,title);
     	
     }
 
 	@Override
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+		
+		//Add items to comboBox
 		actionComboBox.getItems().addAll(
 				"Add new Player",
 				"Add new Game",
