@@ -10,7 +10,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-			Scene scene = new Scene(root,350,350);
+			Scene scene = new Scene(root,350,380);
 			primaryStage.setTitle("Game Application");
 			primaryStage.setScene(scene);
 			primaryStage.show();
