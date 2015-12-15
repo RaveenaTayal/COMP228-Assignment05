@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class DbConfig {
 
 	//PRIVATE CONSTANTS+++++++++++++++++++
-	private static final String USERNAME="raveena";
+	private static final String USERNAME="Raveena";
 	private static final String PASSWORD="123456";
 	private static String CONN_STRING="jdbc:mysql://localhost:3333/gamedb";
 	
