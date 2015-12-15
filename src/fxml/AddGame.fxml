@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane hgap="10.0" prefHeight="122.0" prefWidth="308.0" style="-fx-border-color: black;" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddGameController">  
+   <children>
+      <Label alignment="CENTER" prefHeight="30.0" prefWidth="286.0" text="Add New Game" textAlignment="CENTER" GridPane.columnSpan="2147483647">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label text="Game Title" GridPane.rowIndex="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="gameTitleTextBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#cancelButtonHandler" text="Cancel" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#addButtonHandler" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label fx:id="statusLabel" alignment="CENTER" prefHeight="25.0" prefWidth="286.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+   </children>
+   <padding>
+      <Insets left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
