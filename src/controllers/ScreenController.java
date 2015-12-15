@@ -11,7 +11,7 @@ public abstract class ScreenController {
 	
 	void setScreen(ActionEvent event,Parent parent,String title ) {
 		
-		Scene scene=new Scene(parent,350,380);
+		Scene scene=new Scene(parent,400,400);
 		Stage stage=(Stage)((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle(title);
     	stage.setScene(scene);
